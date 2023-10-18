@@ -41,13 +41,6 @@ builder.Services.AddAuthentication("fiap")
 
 builder.Services.AddTransient<NoticiaService>();
 
-builder.Services.AddMemoryCache();
-//builder.Services.AddDistributedMemoryCache();
-
-builder.Services.AddResponseCompression(
-    o => o.EnableForHttps = true
-); 
-
 var app = builder.Build();
 
 
@@ -60,18 +53,8 @@ var app = builder.Build();
 if (!app.Environment.IsProduction())
     app.UseDeveloperExceptionPage();
 
-app.UseResponseCompression();
 
-
-app.UseStaticFiles(
-    new StaticFileOptions() {
-        OnPrepareResponse = context =>
-        {
-            const int durationInSeconds = 60 * 60 * 24 * 365;
-            context.Context.Response.Headers.Append("Cache-Control", $"public,max-age={durationInSeconds}");
-        }
-    }
-    );
+app.UseStaticFiles();
 
 
 //https://localhost:59148/home/index
