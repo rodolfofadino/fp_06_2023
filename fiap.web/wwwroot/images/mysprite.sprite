@@ -1,0 +1,25 @@
+{
+  "images": {
+    "alemanha": "alemanha.png",
+    "argentina": "argentina.png",
+    "brasil": "brasil.png",
+    "portugal": "portugal.png",
+    "japao": "japao.png",
+    "italia": "italia.png",
+    "grecia": "grecia.png",
+    "eua": "eua.png",
+    "espanha": "espanha.png",
+   
+  },
+  "orientation": "vertical",
+  "optimize": "lossless",
+  "padding":10,
+  "output": "png",
+  "dpi": 90,
+  "stylesheet": "css",
+  "pathprefix": "",
+  "customstyles": {
+    "display": "inline-block"
+  },
+  "appendcachebustspritesuffix": false
+}

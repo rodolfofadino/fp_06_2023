@@ -2,6 +2,7 @@
 using fiap.core.Services;
 using fiap.Middlewares;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +18,16 @@ builder.Services.AddDbContext<MusicaContext>(o => o.UseSqlServer(connection));
 builder.Services.AddDataProtection()
     .SetApplicationName("fiap")
     .PersistKeysToFileSystem(new DirectoryInfo(@"C:\\"));
+
+
+builder.Services.Configure<GzipCompressionProviderOptions>
+    (o=>o.Level = System.IO.Compression.CompressionLevel.Optimal);
+
+builder.Services.AddResponseCompression(
+    r => { r.Providers.Add<GzipCompressionProvider>(); 
+    });
+
+builder.Services.AddMemoryCache();
 
 builder.Services.AddAuthentication("fiap")
     .AddCookie("fiap", o =>
@@ -54,7 +65,19 @@ if (!app.Environment.IsProduction())
     app.UseDeveloperExceptionPage();
 
 
-app.UseStaticFiles();
+app.UseResponseCompression();
+
+app.UseStaticFiles(
+    new StaticFileOptions
+    {
+        OnPrepareResponse = ctx =>
+        {
+            const int durationInSeconds = 60 * 60 * 24 * 30;
+            ctx.Context.Response.Headers.Append("Cache-Control", $"public,max-age={durationInSeconds}");
+        }
+    
+
+    }); 
 
 
 //https://localhost:59148/home/index

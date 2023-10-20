@@ -1,0 +1,18 @@
+[
+  {
+    "outputFileName": "wwwroot/bundle.css",
+    "inputFiles": [
+      "wwwroot/site.css",
+      "wwwroot/images/mysprite.sprite.css",
+      "wwwroot/jcarousel.basic.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundle.js",
+    "inputFiles": [
+      "wwwroot/lib/jquery/jquery.js",
+      "wwwroot/jquery.jcarousel.min.js",
+      "wwwroot/site.js"
+    ]
+  }
+]
