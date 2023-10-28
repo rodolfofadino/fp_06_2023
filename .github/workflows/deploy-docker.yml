@@ -23,7 +23,7 @@ jobs:
       - name: Build Docker Image
         run: |
             echo ${{secrets.DOCKERREGISTRYPASS}} | docker login -u rodolfofadino --password-stdin
-            docker build . -t fiap
+            docker build . -t rodolfofadino/fiap:latest
             docker push rodolfofadino/fiap:latest
 
     
