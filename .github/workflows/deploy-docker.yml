@@ -22,7 +22,7 @@ jobs:
       
       - name: Build Docker Image
         run: |
-            cd src\fiap.web
+            cd src/fiap.web
             docker build . -t ${{ env.APP_NAME }}
     
     
