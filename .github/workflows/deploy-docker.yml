@@ -22,7 +22,10 @@ jobs:
       
       - name: Build Docker Image
         run: |
-            docker build . -t ${{ env.APP_NAME }}
+            echo ${{secrets.DOCKERREGISTRYPASS}} | docker login -u rodolfofadino --password-stdin
+            docker build . -t fiap
+            docker push rodolfofadino/fiap:latest
+
     
     
   
