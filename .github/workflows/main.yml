@@ -1,9 +1,9 @@
 name: Build And Deploy to Azure VM - IIS
 
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   workflow_dispatch:
 
 jobs:
