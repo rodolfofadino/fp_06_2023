@@ -1,0 +1,8 @@
+name: Build And Deploy With Docker
+on:
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+  
