@@ -22,7 +22,7 @@ namespace fiap.test
             object expectedValue = expectedNumber;
             memoryCacheMock.Setup(x => x.TryGetValue("noticias_",out expectedValue)).Returns(false);
             memoryCacheMock.Setup(x => x.Set("noticias_", It.IsAny<List<Noticia>>(), It.IsAny<MemoryCacheEntryOptions>()))
-                .Returns((string key, object value, MemoryCacheEntryOptions options) => value);
+                .Returns((string key, object value, MemoryCacheEntryOptions options) => new List<Noticia>());
             
             var noticiasEsperadas = new List<Noticia>() {
                 new Noticia(){ Id=1, Titulo="lala", Imagem="https://" }
