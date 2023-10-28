@@ -1,8 +1,29 @@
 name: Build And Deploy With Docker
+
 on:
   # push:
   #   branches:
   #     - master
   workflow_dispatch:
 
+env:
+  RELEASE_LABEL: ${{ github.sha }}
+  APP_NAME: ${{ github.event.repository.name }}
+
+  
+jobs:
+  build:
+    name: Build image and push to registry
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+      
+      - name: Build Docker Image
+        run: |
+            cd src\fiap.web
+            docker build . -t ${{ env.APP_NAME }}
+    
+    
   
